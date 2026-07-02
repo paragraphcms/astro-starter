@@ -1,36 +1,32 @@
-# Astro + React + TypeScript + shadcn/ui
+# ParagraphCMS Astro Starter
 
-This is a template for a new Astro project with React, TypeScript, and shadcn/ui.
+Ten README jest krótką dokumentacją projektu ParagraphCMS dla przykładu Astro Starter. Projekt pokazuje podstawową integrację bloga: strona `/blog` pobiera listę wpisów z ParagraphCMS, a `/blog/[slug]` renderuje pojedynczy wpis przez `@paragraphcms/parser-react`.
 
-## Adding components
+Oficjalny kontekst: [ParagraphCMS Astro Quickstart](https://paragraphcms.com/docs/quickstart/astro).
 
-To add components to your app, run the following command:
+## Konfiguracja
+
+1. Skopiuj `.env.example` do `.env`.
+2. Ustaw `PARAGRAPH_API_KEY` kluczem API z ParagraphCMS.
+3. Wpisy powinny mieć slug, bo routing używa `requiredSlug: true`.
+
+## Uruchomienie
 
 ```bash
-npx shadcn@latest add button
+pnpm install
+pnpm dev
 ```
 
-This will place the ui components in the `src/components` directory.
+Build i podgląd produkcyjny:
 
-## Using components
-
-To use the components in your app, import them in an `.astro` file:
-
-```astro
----
-import { Button } from "@/components/ui/button"
----
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Astro App</title>
-  </head>
-  <body>
-    <div class="grid h-screen place-items-center content-center">
-      <Button>Button</Button>
-    </div>
-  </body>
-</html>
+```bash
+pnpm build
+pnpm preview
 ```
+
+## Najważniejsze pliki
+
+- `paragraph.config.ts` - wspólny klient ParagraphCMS.
+- `src/pages/blog/index.astro` - lista wpisów.
+- `src/pages/blog/[slug].astro` - statyczne strony wpisów.
+- `src/components/blog/` - komponenty listy i pojedynczego wpisu.

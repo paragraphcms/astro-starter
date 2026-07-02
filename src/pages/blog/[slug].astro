@@ -1,0 +1,28 @@
+---
+import { Post } from "../../components/blog/post"
+import { client } from "../../../paragraph.config"
+
+export async function getStaticPaths() {
+  const { data, error } = await client.pages.list({
+    requiredSlug: true,
+  })
+
+  if (error) {
+    throw error
+  }
+
+  return data.map((page) => ({
+    params: {
+      slug: page.slug,
+    },
+  }))
+}
+
+const { data: page, error } = await client.page.getBySlug(Astro.params.slug!)
+
+if (error) {
+  throw error
+}
+---
+
+<Post page={page} />
